@@ -1,0 +1,24 @@
+.blogs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2em;
+    padding: 1em;
+}
+
+.blogpost {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    cursor: pointer;
+}
+
+.blogpost h3 {
+    font-size: max(1.5vw, 1.1rem);
+}
+
+.blog_heading {
+    margin-top: 2rem;
+    font-size: max(2vw, 1.4rem);
+    text-align: center;
+}
