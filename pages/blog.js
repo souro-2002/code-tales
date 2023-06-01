@@ -32,10 +32,10 @@ function Blog() {
       <h2 className={`${styles.blog_heading} ${roboto.className}`}>Popular Blog Posts</h2>
       <div className={`${styles.blogs} ${roboto.className}`}>
         {blogs.map((item) => {
-          return <Link key={item.title} href={`/blogpost/${item.title}`}>
+          return <Link key={item.title} href={`/blogpost/${item.slug}`}>
             <div className={styles.blogpost}>
               <h3>{item.title}</h3>
-              <p>{item.content}</p>
+              <p>{item.content.substr(0,100) + "....."}</p>
             </div></Link>
         })}
 
