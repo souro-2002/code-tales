@@ -4,36 +4,32 @@ import styles from '@/styles/BlogPost.module.css'
 import React, { useEffect, useState } from 'react'
 
 const lato = Lato({
-    subsets: ['latin'],
-    weight: ["700", "400"]
+  subsets: ['latin'],
+  weight: ["700", "400"]
 })
 const url = "http://localhost:3000"
 
-function slug() {
-    const router = useRouter()
-    const [blog, setBlog] = useState({})
-    
-    useEffect(() => {
-        if(!router.isReady) return;
-        let { slug } = router.query
-        const api = async () => {
-          const response = await fetch(`${url}/api/getblog?q=${slug}`)
-          const parsed = await response.json()
-          return parsed;
-        }
-        api().then((parsed) => {
-          setBlog(parsed)
-        })
-      }, [router.isReady])
+function slug(props) {
+  const [blog, setBlog] = useState(props.blog)
 
-    return (
-        <>
-            <div className={`${styles.container} ${lato.className}`}>
-                <h1 className={`${lato.className}`}>{blog && blog.title}</h1>
-                <p className={styles.content}>{blog.content}</p>
-            </div>
-        </>
-    )
+  return (
+    <>
+      <div className={`${styles.container} ${lato.className}`}>
+        <h1 className={`${lato.className}`}>{blog && blog.title}</h1>
+        <p className={styles.content}>{blog.content}</p>
+      </div>
+    </>
+  )
+}
+
+export async function getServerSideProps(context) {
+  let { slug } = context.query
+  const response = await fetch(`${url}/api/getblog?q=${slug}`)
+  const blog = await response.json()
+
+  return {
+    props: {blog}
+  };
 }
 
 export default slug
