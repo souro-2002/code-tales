@@ -10,9 +10,9 @@ function Navbar() {
         <nav className={`${styles.mainnav} ${roboto_mono.className}`}>
             <ul>
                 <Link href='/'><l className={styles.nav_item}>Home</l></Link>
+                <Link href='/about'><l className={styles.nav_item}>About</l></Link>
                 <Link href='/blog'><l className={styles.nav_item}>Blog</l></Link>
                 <Link href='/contact'><l className={styles.nav_item}>Contact Us</l></Link>
-                <Link href='/about'><l className={styles.nav_item}>About</l></Link>
             </ul>
         </nav>
     )

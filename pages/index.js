@@ -17,20 +17,23 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <div className={styles.center}>
-           <h1>Code Tales</h1>
+          <h1>Code Tales</h1>
         </div>
 
         <div className={styles.image_wrapper}>
           <Image
+            priority
             src={coder}
             alt=''
             width={300}
             height={200}
           />
+
+          {/* <img src={coder} alt="Coder Image" width={300} height={200} /> */}
         </div>
 
-        <div style={{fontSize:"max(1.2vw,1rem)"}}>A blog for coders hunting for a bug spray, interactions and loads of fun!!!</div>
-        <h2 style={{marginTop:"2rem",fontSize:"max(2vw,1.4rem)"}}>Popular Blog Posts</h2>
+        <div style={{ fontSize: "max(1.2vw,1rem)" }}>A blog for coders hunting for a bug spray, interactions and loads of fun!!!</div>
+        <h2 style={{ marginTop: "2rem", fontSize: "max(2vw,1.4rem)" }}>Popular Blog Posts</h2>
         <div className={styles.blogs}>
           <div className={styles.blogpost}>
             <h3>How to install NextJS?</h3>

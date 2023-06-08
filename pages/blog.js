@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import styles from '@/styles/Blog.module.css'
 import { Roboto } from 'next/font/google'
 import Head from 'next/head'
 import Link from 'next/link'
+const fs = require('fs')
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -32,10 +33,16 @@ function Blog(props) {
   )
 }
 
-export async function getServerSideProps(context) {
-  const response = await fetch(`${url}/api/blogs`)
-  const allBlogs = await response.json()
-
+export async function getStaticProps(context) {
+  const data = await fs.promises.readdir("blogData");
+  let myfile;
+  let allBlogs = [];
+  for (let index = 0; index < data.length; index++) {
+    const item = data[index];
+    myfile = await fs.promises.readFile(`blogData/${item}`,'utf-8');
+    myfile = JSON.parse(myfile)
+    allBlogs.push(myfile)
+  }
   return {
     props: {allBlogs}
   };
