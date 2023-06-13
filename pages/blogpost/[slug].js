@@ -13,8 +13,8 @@ function Slug(props) {
   return (
     <>
       <div className={`${styles.container} ${lato.className}`}>
-        <h1 className={`${lato.className}`}>{blog.title}</h1>
-        <p className={styles.content}>{blog && blog.content}</p>
+        <h1 className={`${lato.className}`}>{blog?.title}</h1>
+        <p className={styles.content}>{blog && blog?.content}</p>
       </div>
     </>
   )
