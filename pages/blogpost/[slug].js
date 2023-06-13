@@ -1,6 +1,9 @@
 import { Lato } from 'next/font/google'
 import styles from '@/styles/BlogPost.module.css'
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+
+import * as fs from 'fs'
 
 const lato = Lato({
   subsets: ['latin'],
@@ -8,7 +11,9 @@ const lato = Lato({
 })
 
 function Slug(props) {
+  const router = useRouter()
   const [blog, setBlog] = useState(props.myblog)
+  if(router.isFallback) return (<div>Loading...</div>)
 
   return (
     <>
@@ -20,34 +25,34 @@ function Slug(props) {
   )
 }
 
-// export async function getStaticPaths() {
-//   let allb = await fs.promises.readdir('blogData')
-//   allb = allb.map((item)=>{
-//     return { params: { slug : item.split('.')[0] }}
-//   })
+export async function getStaticPaths() {
+  let allb = await fs.promises.readdir('blogData')
+  allb = allb.map((item)=>{
+    return { params: { slug : item.split('.')[0] }}
+  })
 
-//   return {
-//     paths: allb,
-//     fallback: true
-//   };
-// }
-
-// export async function getStaticProps(context) {
-//   let { slug } = context.params;
-//   let myblog = await fs.promises.readFile(`blogData/${slug}.json`,'utf-8')
-
-//   return {
-//     props: {myblog:JSON.parse(myblog)}
-//   };
-// }
-
-export async function getServerSideProps(context) {
-  const { slug } = context.query
-  let myblog = await fetch(`http://localhost:3000/api/getblog?q=${slug}`)
-  myblog = await myblog.json()
   return {
-    props: {myblog : myblog.data}
+    paths: allb,
+    fallback: true
   };
 }
+
+export async function getStaticProps(context) {
+  let { slug } = context.params;
+  let myblog = await fs.promises.readFile(`blogData/${slug}.json`,'utf-8')
+
+  return {
+    props: {myblog:JSON.parse(myblog)}
+  };
+}
+
+// export async function getServerSideProps(context) {
+//   const { slug } = context.query
+//   let myblog = await fetch(`http://localhost:3000/api/getblog?q=${slug}`)
+//   myblog = await myblog.json()
+//   return {
+//     props: {myblog : myblog.data}
+//   };
+// }
 
 export default Slug
