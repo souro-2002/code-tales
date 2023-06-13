@@ -3,6 +3,7 @@ import styles from '@/styles/Contact.module.css'
 import Image from 'next/image'
 import contact_img from '@/public/contact.jpg'
 import { Aleo } from 'next/font/google'
+import Head from 'next/head'
 
 const aleo = Aleo({ subsets: ['latin'], weight: ['400', '700'] })
 
@@ -28,6 +29,12 @@ function Contact() {
   }
   return (
     <>
+      <Head>
+        <title>Code Tales - Contact</title>
+        <meta name="description" content="A modern blog website for coders" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.container}>
         <section className={styles.main_form}>
           <h2 className={`${aleo.className} ${styles.heading}`}>Fill your concerns below</h2>

@@ -17,19 +17,22 @@ function Blog(props) {
   return (
     <>
       <Head>
-        <title>Blogs</title>
+        <title>Code Tales - Blog</title>
+        <meta name="description" content="A modern blog website for coders" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <h2 className={`${styles.blog_heading} ${roboto.className}`}>Popular Blog Posts</h2>
-        <div className={`${styles.blogs} ${roboto.className}`}>
-          {blogs.map((item) => {
-            return <Link key={item.title} href={`/blogpost/${item.slug}`}>
-              <div className={styles.blogpost}>
-                <h3>{item.title}</h3>
-                <p>{item.content.substr(0, 100) + "....."}</p>
-              </div></Link>
-          })}
+      <div className={`${styles.blogs} ${roboto.className}`}>
+        {blogs.map((item) => {
+          return <Link key={item.title} href={`/blogpost/${item.slug}`}>
+            <div className={styles.blogpost}>
+              <h3>{item.title}</h3>
+              <p>{item.content.substr(0, 100) + "....."}</p>
+            </div></Link>
+        })}
 
-        </div>
+      </div>
     </>
   )
 }
