@@ -4,6 +4,8 @@ import { Roboto } from 'next/font/google'
 import Head from 'next/head'
 import Link from 'next/link'
 
+import * as fs from 'fs'
+
 const roboto = Roboto({
   subsets: ['latin'],
   weight: "500"
@@ -32,27 +34,27 @@ function Blog(props) {
   )
 }
 
-export async function getServerSideProps(context) {
-  let allBlogs = await fetch(`${url}/api/blogs`)
-  allBlogs = await allBlogs.json()
-  return {
-    props: {allBlogs}
-  };
-}
-
-// export async function getStaticProps(context) {
-//   const data = await fs.promises.readdir("blogData");
-//   let myfile;
-//   let allBlogs = [];
-//   for (let index = 0; index < data.length; index++) {
-//     const item = data[index];
-//     myfile = await fs.promises.readFile(`blogData/${item}`, 'utf-8');
-//     myfile = JSON.parse(myfile)
-//     allBlogs.push(myfile)
-//   }
+// export async function getServerSideProps(context) {
+//   let allBlogs = await fetch(`${url}/api/blogs`)
+//   allBlogs = await allBlogs.json()
 //   return {
-//     props: { allBlogs }
+//     props: {allBlogs}
 //   };
 // }
+
+export async function getStaticProps(context) {
+  const data = await fs.promises.readdir("blogData");
+  let myfile;
+  let allBlogs = [];
+  for (let index = 0; index < data.length; index++) {
+    const item = data[index];
+    myfile = await fs.promises.readFile(`blogData/${item}`, 'utf-8');
+    myfile = JSON.parse(myfile)
+    allBlogs.push(myfile)
+  }
+  return {
+    props: { allBlogs }
+  };
+}
 
 export default Blog
