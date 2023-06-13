@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 export default async function handler(req, res) {
-  const data = await fs.promises.readdir("blogData");
+  let data = await fs.promises.readdir("blogData");
   let myfile;
   let allBlogs = [];
   for (let index = 0; index < data.length; index++) {

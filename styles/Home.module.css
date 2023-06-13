@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   position: relative;
 }
 
@@ -10,14 +9,31 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  font-size: max(1.7vw,1.1rem);
+  padding-inline: 2rem;
   position: relative;
-  font-size: max(2vw,1.2rem);
-  margin-top: 1rem;
+  z-index: 100;
 }
-.image_wrapper{
-  padding: 1rem;
+
+.center > p{
+  font-size: max(1.5vw,1rem);
 }
+.center > *{
+  margin-block: 1rem;
+}
+
+.center::after{
+  content: '';
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 30%;
+  background-color: var(--body-bg);
+  left: 90%;
+  transform: skewX(-10deg);
+}
+
 .blogs{
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
@@ -40,8 +56,7 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem 0;
-  box-shadow: 0 0 6px 1px black;
+  padding: 1rem 0;
 }
 
 .mainnav>ul{
@@ -50,7 +65,78 @@
 
 .nav_item{
   margin: 0 2rem;
-  font-size: max(1.1vw,1rem);
+  font-size: max(1.4vw,1rem);
   font-weight: bold;
   cursor: pointer;
 }
+
+.header{
+  padding-block-start: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+@media(max-width:1145px){
+  .image{
+    width: 600px;
+    height: 400px;
+  }
+  .header{
+    height: 50%;
+  }
+  .center::after{
+    width: 40%;
+  }
+}
+
+@media(max-width:946px){
+  .image{
+    width: 400px;
+    height: 300px;
+  }
+  .header{
+    height: 50%;
+  }
+  .center::after{
+    width: 100px;
+    left: 92%;
+  }
+}
+
+@media(max-width:732px){
+  .image{
+    width: 300px;
+    height: 200px;
+  }
+  .header{
+    height: 50%;
+  }
+  .center::after{
+    width: 100px;
+    left: 92%;
+  }
+}
+
+@media(max-width:575px){
+  .image{
+    display: none;
+  }
+  .center{
+    align-items: center;
+    padding-inline: 1rem;
+  }
+  .center::after{
+    display: none;
+  }
+
+  .center > p{
+    padding-inline: 1rem;
+  }
+
+  .nav_item{
+    margin: 0 0.6rem;
+  }
+}
+
+/* @media(max-width:46) */

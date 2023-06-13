@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import styles from '@/styles/Blog.module.css'
 import { Roboto } from 'next/font/google'
 import Head from 'next/head'
@@ -19,16 +19,16 @@ function Blog(props) {
         <title>Blogs</title>
       </Head>
       <h2 className={`${styles.blog_heading} ${roboto.className}`}>Popular Blog Posts</h2>
-      <div className={`${styles.blogs} ${roboto.className}`}>
-        {blogs.map((item) => {
-          return <Link key={item.title} href={`/blogpost/${item.slug}`}>
-            <div className={styles.blogpost}>
-              <h3>{item.title}</h3>
-              <p>{item.content.substr(0, 100) + "....."}</p>
-            </div></Link>
-        })}
+        <div className={`${styles.blogs} ${roboto.className}`}>
+          {blogs.map((item) => {
+            return <Link key={item.title} href={`/blogpost/${item.slug}`}>
+              <div className={styles.blogpost}>
+                <h3>{item.title}</h3>
+                <p>{item.content.substr(0, 100) + "....."}</p>
+              </div></Link>
+          })}
 
-      </div>
+        </div>
     </>
   )
 }
@@ -39,12 +39,12 @@ export async function getStaticProps(context) {
   let allBlogs = [];
   for (let index = 0; index < data.length; index++) {
     const item = data[index];
-    myfile = await fs.promises.readFile(`blogData/${item}`,'utf-8');
+    myfile = await fs.promises.readFile(`blogData/${item}`, 'utf-8');
     myfile = JSON.parse(myfile)
     allBlogs.push(myfile)
   }
   return {
-    props: {allBlogs}
+    props: { allBlogs }
   };
 }
 

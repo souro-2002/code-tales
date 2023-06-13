@@ -1,11 +1,26 @@
 .container{
     display: grid;
     grid-auto-flow: row;
-    gap: 2rem;
+    /* gap: 2rem; */
     place-items: center;
-    padding: 3em;
+    padding: 1em;
+}
+
+.container h1{
+    font-size: max(2.5vw,1.55rem);
+}
+.container > *{
+    margin-block: 1rem;
 }
 
 .content{
-    padding: 0 8rem;
+    font-size: max(1.3vw,1rem);
+    padding: 0 4rem;
 }
+
+@media(max-width:580px){
+    .content{
+        padding: 0 1rem;
+    }
+}
+

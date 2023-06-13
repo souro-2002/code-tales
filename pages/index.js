@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { DM_Sans } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import coder from '../public/coder_img.jpg'
 
-const inter = Inter({ subsets: ['latin'] })
+const dm_sans = DM_Sans({ subsets: ['latin'], weight: '400' })
 
 export default function Home() {
   return (
@@ -15,25 +15,27 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.center}>
-          <h1>Code Tales</h1>
-        </div>
+      <main className={`${styles.main} ${dm_sans.className}`}>
+        <header className={styles.header}>
+          <div className={styles.center}>
+            <h1>&lt;Code-Tales/&gt;</h1>
+            <p> A blog for coders hunting for a bug spray, interactions and loads of fun!!!</p>
+          </div>
 
-        <div className={styles.image_wrapper}>
-          <Image
-            priority
-            src={coder}
-            alt=''
-            width={300}
-            height={200}
-          />
+          <div className={styles.image_wrapper}>
+            <Image
+              className={styles.image}
+              priority
+              src={coder}
+              alt=''
+              width={700}
+              height={500}
+            />
 
-          {/* <img src={coder} alt="Coder Image" width={300} height={200} /> */}
-        </div>
+          </div>
+        </header>
 
-        <div style={{ fontSize: "max(1.2vw,1rem)" }}>A blog for coders hunting for a bug spray, interactions and loads of fun!!!</div>
-        <h2 style={{ marginTop: "2rem", fontSize: "max(2vw,1.4rem)" }}>Popular Blog Posts</h2>
+        <h2 style={{ marginTop: "2rem", fontSize: "max(2vw,1.4rem)", textAlign: "center" }}>Popular Blog Posts</h2>
         <div className={styles.blogs}>
           <div className={styles.blogpost}>
             <h3>How to install NextJS?</h3>

@@ -1,0 +1,44 @@
+.container {
+    position: relative;
+    max-width: 70vw;
+    z-index: 100;
+    margin: 0 auto;
+    padding-block: 1rem;
+}
+
+.heading {
+    font-size: 1.5rem;
+    margin-block: 1em;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20%;
+    background-color: var(--btn-primary);
+    border: none;
+    --mask:
+        radial-gradient(40.31px at 50% calc(100% - 55.00px), #000 99%, #0000 101%) calc(50% - 40px) 0/80px 100%,
+        radial-gradient(40.31px at 50% calc(100% + 35.00px), #0000 99%, #000 101%) 50% calc(100% - 20px)/80px 100% repeat-x;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+    transform: rotate(0.5turn);
+    
+}
+
+@media(max-width:714px){
+    .footer{
+        height: 10%;
+        opacity: 0.5;
+    }
+}
+
+@media(max-width:530px){
+    .footer{
+        height: 10%;
+        opacity: 0.3;
+    }
+}
